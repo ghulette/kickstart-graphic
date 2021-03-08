@@ -1,3 +1,5 @@
+open Printf
+
 let set_color =
   let palette =
     [| (0xF,0xF,0xF); (0x0,0x0,0x0); (0x7,0x7,0xC); (0xB,0xB,0xB) |] |>
@@ -7,8 +9,7 @@ let set_color =
 
 let jump x y = Graphics.moveto (Char.code x) (Char.code y)
 let line_to x y = Graphics.lineto (Char.code x) (Char.code y)
-let fill x y =
-  Printf.printf "unimplemented fill at %d, %d\n" (Char.code x) (Char.code y)
+let fill x y = printf "fill at %d, %d\n%!" (Char.code x) (Char.code y)
 
 type mode = Jump | Line | Fill
 
