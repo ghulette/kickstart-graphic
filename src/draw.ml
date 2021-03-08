@@ -1,11 +1,9 @@
 let set_color =
-  let rgb r g b = Graphics.rgb (r * 16) (g * 16) (b * 16) in
-  function
-  | '\x00' -> Graphics.set_color (rgb 0xF 0xF 0xF)
-  | '\x01' -> Graphics.set_color (rgb 0x0 0x0 0x0)
-  | '\x02' -> Graphics.set_color (rgb 0x7 0x7 0xC)
-  | '\x03' -> Graphics.set_color (rgb 0xB 0xB 0xB)
-  | _ -> failwith "unexpected color index"
+  let palette =
+    [| (0xF,0xF,0xF); (0x0,0x0,0x0); (0x7,0x7,0xC); (0xB,0xB,0xB) |] |>
+    Array.map (fun (r,g,b) -> Graphics.rgb (r * 16) (g * 16) (b * 16))
+  in
+  fun i -> Graphics.set_color palette.(Char.code i)
 
 let jump x y = Graphics.moveto (Char.code x) (Char.code y)
 let line_to x y = Graphics.lineto (Char.code x) (Char.code y)
