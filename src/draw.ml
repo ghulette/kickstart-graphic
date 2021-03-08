@@ -1,4 +1,3 @@
-
 let set_color =
   let rgb r g b = Graphics.rgb (r * 16) (g * 16) (b * 16) in
   function
@@ -10,7 +9,8 @@ let set_color =
 
 let jump x y = Graphics.moveto (Char.code x) (Char.code y)
 let line_to x y = Graphics.lineto (Char.code x) (Char.code y)
-let fill x y = Graphics.plot (Char.code x) (Char.code y)
+let fill x y =
+  Printf.printf "unimplemented fill at %d, %d\n" (Char.code x) (Char.code y)
 
 type mode = Jump | Line | Fill
 
